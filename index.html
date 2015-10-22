@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Hank Quinlan, Horrible Cop</title>
+		<meta charset="utf-8">
+		<title>Catch the Square</title>
+
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="ball.js"></script>
+		<script type="text/javascript" src="box.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+
 	</head>
-	<body>
-		<nav>
-    		<ul>
-        		<li><a href="/">Home</a></li>
-	        	<li><a href="/about">About</a></li>
-        		<li><a href="/cv">CV</a></li>
-        		<li><a href="/blog">Blog</a></li>
-    		</ul>
-		</nav>
-		<div class="container">
-    		<div class="blurb">
-        		<h1>Hi there, I'm Hank Quinlan!</h1>
-				<p>I'm best known as the horrible cop from <em>A Touch of Evil</em> Don't trust me. <a href="/about">Read more about my life...</a></p>
-    		</div><!-- /.blurb -->
-		</div><!-- /.container -->
-		<footer>
-    		<ul>
-        		<li><a href="mailto:hankquinlanhub@gmail.com">email</a></li>
-        		<li><a href="https://github.com/hankquinlan">github.com/hankquinlan</a></li>
-			</ul>
-		</footer>
+	<body> 
+		<div>
+			<button onclick="startAnimation()">Start</button>
+           	<button onclick="stopAnimation()">Stop</button> 
+       </div>
+			<p id="punkte">Punkte: 0</p>
+			<p id="highscore">Highscore:</p>			
+	       <div style="left:270px; top: 230px;  position:absolute;">
+	       	-------------
+	       </div>
+	       <div style="left:20px; top: 305px;  position:absolute;">
+	       	-------------
+	       </div>
+			<div id="rand">
+				<div id="ball-container">
+					<img id = "ball" src="Edelstein_schwarz.png" alt="" class="hidden" style="left:180px; top:280px;"/>
+				</div>
+				<div id="box-container">
+					<img id = "box" src="Edelstein_schwarz.png" alt="" class="hidden" style="left:40px; top:125px;"/>
+				</div>
+				
+				<img id = "player" src="Edelstein_green.png" style="left:165px; top: 265px; position:absolute;" alt=""/>
+			</div>	
 	</body>
 </html>
