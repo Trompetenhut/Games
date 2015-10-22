@@ -1,0 +1,32 @@
+#rand {
+    width: 340px;
+    height: 320px;
+    border: 1px solid black;
+}
+
+#player, #player2 {
+ position:absolute;
+ width:30px;
+ height:30px;
+}
+
+#ball, #ball2 {
+ position:absolute;
+ width:10px;
+ height:10px;
+}
+
+#box, #box2 {
+ position:absolute;
+ width:30px;
+ height:30px;
+}
+
+.hidden{
+	visibility: hidden;
+}
+
+td:nth-child(2)
+{
+    padding:0 0 0 400px;
+}

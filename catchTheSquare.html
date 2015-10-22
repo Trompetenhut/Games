@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Catch the Square</title>
+
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="ball.js"></script>
+		<script type="text/javascript" src="box.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+	</head>
+	<body> 
+		<div>
+			<button onclick="startAnimation()">Start</button>
+           	<button onclick="stopAnimation()">Stop</button> 
+       </div>
+			<p id="punkte">Punkte: 0</p>
+			<p id="highscore">Highscore:</p>			
+	       <div style="left:270px; top: 230px;  position:absolute;">
+	       	-------------
+	       </div>
+	       <div style="left:20px; top: 305px;  position:absolute;">
+	       	-------------
+	       </div>
+			<div id="rand">
+				<div id="ball-container">
+					<img id = "ball" src="Edelstein_schwarz.png" alt="" class="hidden" style="left:180px; top:280px;"/>
+				</div>
+				<div id="box-container">
+					<img id = "box" src="Edelstein_schwarz.png" alt="" class="hidden" style="left:40px; top:125px;"/>
+				</div>
+				
+				<img id = "player" src="Edelstein_green.png" style="left:165px; top: 265px; position:absolute;" alt=""/>
+			</div>	
+	</body>
+</html>
