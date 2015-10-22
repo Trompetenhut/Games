@@ -90,7 +90,7 @@ function init() {
   highscore = localStorage.getItem("highscore");
   highscoreUser = localStorage.getItem("highscoreUser");			  
 
-  if(!highscore){
+  if(highscore){
 	   document.getElementById('highscore').innerHTML = "Highscore: " + highscore + " (" + highscoreUser + ")";
   }else{
   	document.getElementById('highscore').innerHTML = "Highscore: 0";
