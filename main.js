@@ -54,7 +54,7 @@ function animateStuff() {
 	  	if(box[i]._y - box[i]._vY <= 240){
 	  		if(res[res.length-1] == "Edelstein_rot.png"){
 	  			document.getElementById('box-container').removeChild(box[i]);
-	  		}else if(res[res.length-1] == "Edelstein_schwarz.png"){				  			
+	  		}else if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_blau.png"){				  			
 	  			gameOver();
 	  		}
 		  	
@@ -63,7 +63,7 @@ function animateStuff() {
 	  	if(box[i]._y + box[i]._vY > 285){
 	  		if(res[res.length-1] == "Edelstein_rot.png"){
 	  			document.getElementById('box-container').removeChild(box[i]);
-	  		}else if(res[res.length-1] == "Edelstein_schwarz.png"){
+	  		}else if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_blau.png"){
 	  			gameOver();
 	  		}
 		  	
@@ -96,7 +96,17 @@ function init() {
   	document.getElementById('highscore').innerHTML = "Highscore: 0";
   }
   punkte = 0;
-  document.getElementById('punkte').innerHTML = "Punkte: " + punkte;
+  document.getElementById('punkte').innerHTML = "" + punkte;
+
+  /*
+    document.getElementById("achievment1").style.color = "black";
+      document.getElementById("achievment2").style.color = "black";
+      document.getElementById("achievment3").style.color = "black";
+      document.getElementById("achievment4").style.color = "black";
+      document.getElementById("achievment5").style.color = "black";
+      document.getElementById("punkte").style.color = "black";*/
+
+
   
   
   initBall(balls[0], "");  

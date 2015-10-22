@@ -26,12 +26,22 @@
 		initBox(box[box.length-1], direction);
 		box[box.length-1].classList.remove("hidden");
 
-		var index = Math.round((Math.random() * 3) + 1);
+		var index = Math.round((Math.random() * 100));
 
-	  	if(index == 2){
-	  		document.getElementById("box").src = "Edelstein_rot.png";
+		if(punkte < 50){
+		  	if(index >= 0 && index < 30){
+		  		document.getElementById("box").src = "Edelstein_rot.png";
+			}else{
+				document.getElementById("box").src = "Edelstein_schwarz.png";
+			}			
 		}else{
+			if(index >= 0 && index < 30){
+	  		document.getElementById("box").src = "Edelstein_rot.png";
+		}else if(index >= 30 && index < 90){
 			document.getElementById("box").src = "Edelstein_schwarz.png";
+		}else{
+			document.getElementById("box").src = "Edelstein_blau.png";
+		}
 		}	
 	}
 

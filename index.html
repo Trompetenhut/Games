@@ -15,24 +15,101 @@
 		<div>
 			<button onclick="startAnimation()">Start</button>
            	<button onclick="stopAnimation()">Stop</button> 
-       </div>
-			<p id="punkte">Punkte: 0</p>
+       </div>			
+       
+       		<p>[Schieße mit den Pfeiltasten die schwarzen Diamanten ab!]</p>
 			<p id="highscore">Highscore:</p>			
-	       <div style="left:270px; top: 230px;  position:absolute;">
-	       	-------------
-	       </div>
-	       <div style="left:20px; top: 305px;  position:absolute;">
-	       	-------------
-	       </div>
-			<div id="rand">
-				<div id="ball-container">
-					<img id = "ball" src="Edelstein_schwarz.png" alt="" class="hidden" style="left:180px; top:280px;"/>
-				</div>
-				<div id="box-container">
-					<img id = "box" src="Edelstein_schwarz.png" alt="" class="hidden" style="left:40px; top:125px;"/>
-				</div>
-				
-				<img id = "player" src="Edelstein_green.png" style="left:165px; top: 265px; position:absolute;" alt=""/>
-			</div>	
+	       
+	       <table>
+	       	<tr>
+	       		<td>
+	       			<div id="rand">	       				
+
+						<div style="left:270px; top: 230px;  position:absolute;">-------------</div>
+				        <div style="left:20px; top: 305px;  position:absolute;">-------------</div>
+
+						<div id="ball-container">
+							<img id = "ball" src="Edelstein_schwarz.png" alt="" class="hidden" style="left:180px; top:280px;"/>
+						</div>
+						<div id="box-container">
+							<img id = "box" src="Edelstein_schwarz.png" alt="" class="hidden" style="left:40px; top:125px;"/>
+						</div>
+						
+						<img id = "player" src="Edelstein_green.png" style="left:165px; top: 265px; position:absolute;" alt=""/>
+					</div>	
+	       		</td><!--
+	       		<td style="padding: 0 0 0 200px">
+	       			<table>	       				
+	       				<tr>
+	       					<td>
+	       						<label id="achievment1">>= 50 && < 70</label>
+	       					</td>
+	       					<td>
+	       						<table>
+	       							<tr>
+	       								<td rowspan="3" valign="center" align="center"><img class = "ball" src="Edelstein_schwarz.png" alt=""/><br>x1</td>
+	       								<td rowspan="3"><img class = "box" src="Edelstein_schwarz.png" alt=""/></td>
+	       								<td rowspan="3" valign="center" align="center"><img class = "ball" src="Edelstein_schwarz.png" alt=""/><br>x1</td>
+	       							</tr>
+	       						</table>
+	       					</td>
+	       				</tr>
+	       				<tr>
+	       					<td>
+	       						<label id="achievment2">>= 100 && < 120</label>	       						
+	       					</td>
+	       					<td>
+	       						<table>
+	       							<tr>
+	       								<td rowspan="3" valign="center" align="center"><img class = "ball" src="Edelstein_schwarz.png" alt=""/><br>x1</td>
+	       								<td rowspan="3"><img class = "box" src="Edelstein_schwarz.png" alt=""/></td>
+	       								<td rowspan="3" valign="center" align="center"><img class = "ball" src="Edelstein_schwarz.png" alt=""/><br>x0.25</td>
+	       							</tr>
+	       						</table>
+	       					</td>
+	       				</tr>
+	       				<tr>
+	       					<td>
+	       						<label id="achievment3">>= 200</label>	       						
+	       					</td>
+	       					<td>
+	       						<img class = "box" src="Edelstein_blau.png" alt=""/>
+	       					</td>
+	       				</tr>
+	       				<tr>
+	       					<td>
+	       						<label id="achievment4">>= 250 && < 270</label>	       						
+	       					</td>
+	       					<td>
+	       						<table>
+	       							<tr>
+	       								<td rowspan="3" valign="center" align="center"><img class = "ball" src="Edelstein_schwarz.png" alt=""/><br>-x1</td>
+	       								<td rowspan="3"><img class = "box" src="Edelstein_schwarz.png" alt=""/></td>
+	       								<td rowspan="3" valign="center" align="center"><img class = "ball" src="Edelstein_schwarz.png" alt=""/><br>-x1</td>
+	       							</tr>
+	       						</table>
+	       					</td>
+	       				</tr>
+	       				<tr>
+	       					<td>
+	       						<label id="achievment5">>= 300 && < 1000</label>	       						
+	       					</td>
+	       					<td>
+	       						<table >
+	       							<tr>
+	       								<td rowspan="3" valign="center" align="center"><img class = "ball" src="Edelstein_schwarz.png" alt=""/><br>-x0.25</td>
+	       								<td rowspan="3"><img class = "box" src="Edelstein_schwarz.png" alt=""/></td>
+	       								<td rowspan="3" valign="center" align="center"><img class = "ball" src="Edelstein_schwarz.png" alt=""/><br>-x1</td>
+	       							</tr>
+	       						</table>
+	       					</td>
+	       				</tr>
+	       			</table>
+	       			
+	       		</td>-->
+	       	</tr>
+
+	       </table>
+	       <h1 id="punkte" align="center" style="width:340px; margin-top:-300px">0</h1>
 	</body>
 </html>
