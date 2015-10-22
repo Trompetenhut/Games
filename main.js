@@ -24,9 +24,9 @@ function gameOver(){
 	alert("Game Over! \nPunkte: " + punkte);
 
 	if(punkte > highscore){					
-		highscoreUser = prompt("New Highscore! Please enter your name:","");
+		//highscoreUser = prompt("New Highscore! Please enter your name:","");
 		localStorage.setItem("highscore", punkte);
-		localStorage.setItem("highscoreUser", highscoreUser);
+		//localStorage.setItem("highscoreUser", highscoreUser);
 	}
 
 	for (var i = box.length - 1; i >= 1; i--) {
@@ -91,9 +91,9 @@ function init() {
   highscoreUser = localStorage.getItem("highscoreUser");			  
 
   if(highscore){
-	   document.getElementById('highscore').innerHTML = "Highscore: " + highscore + " (" + highscoreUser + ")";
+	   document.getElementById('highscore').innerHTML = "" + highscore;
   }else{
-  	document.getElementById('highscore').innerHTML = "Highscore: 0";
+  	document.getElementById('highscore').innerHTML = "0";
   }
   punkte = 0;
   document.getElementById('punkte').innerHTML = "" + punkte;
