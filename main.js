@@ -1,9 +1,11 @@
 var canvasX = 0;
 var canvasY = 0;
 var playerWidth = 30;
-var punkte = 0;			
+var points = 0;			
 var highscore;
 var highscoreUser;
+var counter;
+var pause;
 
 var balls = [];
 var balls2 = [];
@@ -21,11 +23,11 @@ var speedBox = 1;
 
 function gameOver(){
 	stopAnimation();
-	alert("Game Over! \nPunkte: " + punkte);
-
-	if(punkte > highscore){					
+	alert("Game Over! \npoints: " + points);
+  
+	if(points > highscore){					
 		//highscoreUser = prompt("New Highscore! Please enter your name:","");
-		localStorage.setItem("highscore", punkte);
+		localStorage.setItem("highscore", points);
 		//localStorage.setItem("highscoreUser", highscoreUser);
 	}
 
@@ -42,61 +44,69 @@ function gameOver(){
 }
 
 function animateStuff() {
-  for (var i=balls.length; i--;) {
-    moveBall(balls[i]);
-  } 
-  for (var i=0; i < box.length; i++) {
-    moveBox(box[i]);
+  if(!pause){
+    for (var i=balls.length; i--;) {
+      moveBall(balls[i]);
+    } 
+    for (var i=0; i < box.length; i++) {
+      moveBox(box[i]);
 
-    var str = box[i].src;
-	var res = str.split("/");
-    if(box[i]._vY < 0){
-	  	if(box[i]._y - box[i]._vY <= 240){
-	  		if(res[res.length-1] == "Edelstein_rot.png"){
-	  			document.getElementById('box-container').removeChild(box[i]);
-	  		}else if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_blau.png"){				  			
-	  			gameOver();
-	  		}
-		  	
-		  } 
-	}else if(box[i]._vY > 0){
-	  	if(box[i]._y + box[i]._vY > 285){
-	  		if(res[res.length-1] == "Edelstein_rot.png"){
-	  			document.getElementById('box-container').removeChild(box[i]);
-	  		}else if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_blau.png"){
-	  			gameOver();
-	  		}
-		  	
-		  } 
-	}
+      var str = box[i].src;
+  	var res = str.split("/");
+      if(box[i]._vY < 0){
+  	  	if(box[i]._y - box[i]._vY <= 240){
+  	  		if(res[res.length-1] == "Edelstein_rot.png"){
+  	  			document.getElementById('box-container').removeChild(box[i]);
+  	  		}else if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_blau.png"){				  			
+  	  			gameOver();
+  	  		}
+  		  	
+  		  } 
+  	}else if(box[i]._vY > 0){
+  	  	if(box[i]._y + box[i]._vY > 285){
+  	  		if(res[res.length-1] == "Edelstein_rot.png"){
+  	  			document.getElementById('box-container').removeChild(box[i]);
+  	  		}else if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_blau.png"){
+  	  			gameOver();
+  	  		}
+  		  	
+  		  } 
+  	}
+    }
   } 		   
 }
 
 function startAnimation() {
+  pause = false;
   if (!timer) timer = setInterval(animateStuff,20);
-  if (!timerBox) timerBox = setInterval(createNewBox,1000);
+  if (!timerBox) timerBox = setInterval(createNewBox,20);
 }
 
 function stopAnimation() {
+  pause = true;
   clearInterval(timer);
   timer = null;
   clearInterval(timerBox);
-  timerBox = null;
+  timerBox = null;  
+  if(points > highscoreUser)
+    points = highscoreUser;
 }					
 
 function init() {
   balls = document.getElementById('ball-container').getElementsByTagName('img');
   box = document.getElementById('box-container').getElementsByTagName('img');		  
-  highscore = localStorage.getItem("highscore");
-  highscoreUser = localStorage.getItem("highscoreUser");			  
+  highscore = localStorage.getItem("highscore");		
+  highscoreUser = 0;  
+  counter = 0;
+  pause = false;
 
   if(highscore){
 	   document.getElementById('highscore').innerHTML = "" + highscore;
   }else{
   	document.getElementById('highscore').innerHTML = "0";
   }
-  punkte = 0;
-  document.getElementById('punkte').innerHTML = "" + punkte;
+  points = 0;
+  document.getElementById('points').innerHTML = "" + points;
 
   /*
     document.getElementById("achievment1").style.color = "black";
@@ -104,7 +114,7 @@ function init() {
       document.getElementById("achievment3").style.color = "black";
       document.getElementById("achievment4").style.color = "black";
       document.getElementById("achievment5").style.color = "black";
-      document.getElementById("punkte").style.color = "black";*/
+      document.getElementById("points").style.color = "black";*/
 
 
   
@@ -141,6 +151,12 @@ function checkKeyPressed(e) {
         createBall(document.getElementById('ball-container'), "down");
     }else if (e.keyCode == "38") {
         createBall(document.getElementById('ball-container'), "up");
+    }else if (e.keyCode == "32") {
+        if(pause){        
+          startAnimation();
+        }else{   
+          stopAnimation();
+        }
     }
 }
 
@@ -153,14 +169,15 @@ function myFunction(e) {
     if(x < document.getElementById("player").offsetLeft){
       createBall(document.getElementById('ball-container'), "left");
     }
-
-    if(x >= document.getElementById("player").offsetLeft && x < document.getElementById("player").offsetLeft){
-      document.getElementById("punkte").style.color = "red";
-    }else{
-      document.getElementById("punkte").style.color = "black";
-    }
 }
 
+window.addEventListener('focus', function() {
+    //startAnimation();
+});
+
+window.addEventListener('blur', function() {
+    stopAnimation();
+});
 window.addEventListener("keydown", checkKeyPressed, false);
 window.onload = init;
 getWindowCoords = (navigator.userAgent.toLowerCase().indexOf('opera')>0||navigator.appVersion.toLowerCase().indexOf('safari')!=-1)?function() {

@@ -28,7 +28,7 @@
 
 		var index = Math.round((Math.random() * 100));
 
-		if(punkte < 50){
+		if(points < 50){
 		  	if(index >= 0 && index < 30){
 		  		document.getElementById("box").src = "Edelstein_rot.png";
 			}else{
@@ -46,6 +46,13 @@
 	}
 
 	function createNewBox(){
-		createBox(document.getElementById('box-container'), "up");
-		createBox(document.getElementById('box-container'), "down");
+		if(!pause){
+			counter++;
+			if(counter >= 50){
+				counter = 0;
+				createBox(document.getElementById('box-container'), "up");
+				createBox(document.getElementById('box-container'), "down");
+			}
+		}
+		
 	}	
