@@ -149,7 +149,8 @@ function myFunction(e) {
     var y = e.clientY;
     if(x >= document.getElementById("player").offsetLeft){
       createBall(document.getElementById('ball-container'), "right");
-    }else{
+    }
+    if(x < document.getElementById("player").offsetLeft){
       createBall(document.getElementById('ball-container'), "left");
     }
 }
