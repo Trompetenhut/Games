@@ -25,6 +25,7 @@
 		oParent.appendChild(document.getElementById('box').cloneNode(true));			  
 		initBox(box[box.length-1], direction);
 		box[box.length-1].classList.remove("hidden");
+		no();
 
 		var index = Math.round((Math.random() * 100));
 
