@@ -68,7 +68,7 @@ function animateStuff() {
   	  	if(box[i]._y + box[i]._vY > 285){
   	  		if(res[res.length-1] == "Edelstein_rot.png"){
   	  			document.getElementById('box-container').removeChild(box[i]);
-  	  		}else if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_blau.png"){
+  	  		}else if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_blau.png" || res[res.length-1] == "Edelstein_orange.png"){
   	  			gameOver();
   	  		}
   		  	

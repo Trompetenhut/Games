@@ -1,15 +1,15 @@
 	function initBox(oBox, direction) {			  
 
 	if(direction == "up"){
+		oBox._x = 40;
+		oBox._y = 125;
+		oBox._vX = 0;
+		oBox._vY = speedBox;		
+	}else if(direction == "down"){	
 		oBox._x = 290;
 		oBox._y = 400;
 		oBox._vX = 0;
 		oBox._vY = -speedBox;
-	}else if(direction == "down"){
-		oBox._x = 40;
-		oBox._y = 125;
-		oBox._vX = 0;
-		oBox._vY = speedBox;
 	}
 
 	}
@@ -28,22 +28,33 @@
 		no();
 
 		var index = Math.round((Math.random() * 100));
-
-		if(points < 50){
+		document.getElementById("box").src = "Edelstein_schwarz.png";
+		
+		if(points < 30){
 		  	if(index >= 0 && index < 30){
 		  		document.getElementById("box").src = "Edelstein_rot.png";
 			}else{
 				document.getElementById("box").src = "Edelstein_schwarz.png";
 			}			
-		}else{
+		}else if(points < 70 || direction=="down"){
 			if(index >= 0 && index < 30){
-	  		document.getElementById("box").src = "Edelstein_rot.png";
-		}else if(index >= 30 && index < 90){
-			document.getElementById("box").src = "Edelstein_schwarz.png";
+		  		document.getElementById("box").src = "Edelstein_rot.png";
+			}else if(index >= 30 && index < 90){
+				document.getElementById("box").src = "Edelstein_schwarz.png";
+			}else{
+				document.getElementById("box").src = "Edelstein_blau.png";
+			}
 		}else{
-			document.getElementById("box").src = "Edelstein_blau.png";
+			if(index >= 0 && index < 20){
+	  			document.getElementById("box").src = "Edelstein_rot.png";
+			}else if(index >= 20 && index < 80){
+				document.getElementById("box").src = "Edelstein_schwarz.png";
+			}else if(index >= 80 && index < 95){
+				document.getElementById("box").src = "Edelstein_blau.png";		
+			}else{
+				document.getElementById("box").src = "Edelstein_orange.png";
+			}
 		}
-		}	
 	}
 
 	function no(){

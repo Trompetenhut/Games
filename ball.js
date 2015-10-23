@@ -64,8 +64,11 @@ function moveBall(oBall) {
       var str = box[k].src;
 	var res = str.split("/");
 
-	  if(ballX - ballsWidth/2 < boxX + boxWidth && ballX + ballsWidth/2 > boxX && ballY < boxY + boxWidth && ballY + ballsWidth > boxY){
-	  	if(res[res.length-1] == "Edelstein_schwarz.png"){
+	  if(ballX + ballsWidth/2 < boxX + boxWidth && ballX - ballsWidth/2 > boxX && ballY < boxY + boxWidth && ballY + ballsWidth > boxY){
+	  	if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_orange.png"){
+        if(oBall._vX < 0){
+          oBall.style.left = oBall._x+'px';
+        }
         no();          
         highscoreUser++;
 	  		document.getElementById('ball-container').removeChild(oBall);
@@ -78,9 +81,18 @@ function moveBall(oBall) {
         box[k].src = "Edelstein_schwarz.png";
 	  	}else if(res[res.length-1] == "Edelstein_rot.png"){
 	  		gameOver();
-	  	}
-	  	
-	  }  
+	  	}	  	
+	  }else if(ballX - ballsWidth/2 < boxX + boxWidth*3 && ballX + ballsWidth/2 > boxX - boxWidth*2 && ballY < boxY + boxWidth*2 && ballY + ballsWidth > boxY - boxWidth){
+      if(res[res.length-1] == "Edelstein_orange.png"){
+
+        if(oBall._vX < 0){
+          //oBall._vX = -speed;
+        }else{
+          oBall._vX = speed/5;
+          oBall.src = "Edelstein_orange.png";
+        }
+      }          
+    }  
 	}
 	if(ballX > 500 || ballY > 500 || ballX < 0 || ballY < 0){
 		document.getElementById('ball-container').removeChild(oBall);
