@@ -153,6 +153,12 @@ function myFunction(e) {
     if(x < document.getElementById("player").offsetLeft){
       createBall(document.getElementById('ball-container'), "left");
     }
+
+    if(x >= document.getElementById("player").offsetLeft && x < document.getElementById("player").offsetLeft){
+      document.getElementById("punkte").style.color = "red";
+    }else{
+      document.getElementById("punkte").style.color = "black";
+    }
 }
 
 window.addEventListener("keydown", checkKeyPressed, false);
