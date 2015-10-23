@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Catch the Square</title>
 
 		<script type="text/javascript" src="main.js"></script>
@@ -17,13 +18,13 @@
            	<button onclick="stopAnimation()">Stop</button> 
        </div>			
        
-       		<p>[Schieße mit den Pfeiltasten die schwarzen Diamanten ab!]</p>
+       		<p>[shoot the black diamants!]</p>
 			<p >Your Highscore: <label id="highscore"></label></p>			
 	       
 	       <table>
 	       	<tr>
 	       		<td>
-	       			<div id="rand">	       				
+	       			<div id="rand" onmousedown="myFunction(event)">	       				
 
 						<div style="left:270px; top: 230px;  position:absolute;">-------------</div>
 				        <div style="left:20px; top: 305px;  position:absolute;">-------------</div>

@@ -144,6 +144,16 @@ function checkKeyPressed(e) {
     }
 }
 
+function myFunction(e) {
+    var x = e.clientX;
+    var y = e.clientY;
+    if(x >= document.getElementById("player").offsetLeft){
+      createBall(document.getElementById('ball-container'), "right");
+    }else{
+      createBall(document.getElementById('ball-container'), "left");
+    }
+}
+
 window.addEventListener("keydown", checkKeyPressed, false);
 window.onload = init;
 getWindowCoords = (navigator.userAgent.toLowerCase().indexOf('opera')>0||navigator.appVersion.toLowerCase().indexOf('safari')!=-1)?function() {
