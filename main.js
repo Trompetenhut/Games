@@ -24,7 +24,7 @@ var speedBox = 1;
 function gameOver(){
 	stopAnimation();
 	alert("Game Over! \npoints: " + points);
-  
+
 	if(points > highscore){					
 		//highscoreUser = prompt("New Highscore! Please enter your name:","");
 		localStorage.setItem("highscore", points);
@@ -78,12 +78,14 @@ function animateStuff() {
 
 function startAnimation() {
   pause = false;
+  document.getElementById('pause').hidden = true;
   if (!timer) timer = setInterval(animateStuff,20);
   if (!timerBox) timerBox = setInterval(createNewBox,20);
 }
 
 function stopAnimation() {
   pause = true;
+  document.getElementById('pause').hidden = false;
   clearInterval(timer);
   timer = null;
   clearInterval(timerBox);
