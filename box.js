@@ -45,6 +45,12 @@
 		}	
 	}
 
+	function no(){
+		if(points > highscoreUser){
+          points = highscoreUser;
+        }
+	}
+
 	function createNewBox(){
 		if(!pause){
 			counter++;

@@ -89,6 +89,8 @@ function stopAnimation() {
   pause = true;
   if(!gameLost){
     document.getElementById('pause').hidden = false;
+  }else{
+    no();
   }
   clearInterval(timer);
   timer = null;
@@ -98,10 +100,7 @@ function stopAnimation() {
 
 function init() {
   balls = document.getElementById('ball-container').getElementsByTagName('img');
-  box = document.getElementById('box-container').getElementsByTagName('img');
-  if(points > highscoreUser){
-    localStorage.setItem("highscore", highscoreUser);
-  }	  
+  box = document.getElementById('box-container').getElementsByTagName('img');   
   highscore = localStorage.getItem("highscore");		
   highscoreUser = 0;  
   counter = 0;

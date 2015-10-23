@@ -66,6 +66,7 @@ function moveBall(oBall) {
 
 	  if(ballX < boxX + boxWidth && ballX + ballsWidth > boxX && ballY < boxY + boxWidth && ballY + ballsWidth > boxY){
 	  	if(res[res.length-1] == "Edelstein_schwarz.png"){
+        no();          
         highscoreUser++;
 	  		document.getElementById('ball-container').removeChild(oBall);
 	  		document.getElementById('box-container').removeChild(box[k]);
