@@ -6,6 +6,7 @@ var highscore;
 var highscoreUser;
 var counter;
 var pause;
+var gameLost;
 
 var balls = [];
 var balls2 = [];
@@ -22,6 +23,7 @@ var timerBox2 = null;
 var speedBox = 1;				
 
 function gameOver(){
+  gameLost = true;
 	stopAnimation();
 	alert("Game Over! \npoints: " + points);
 
@@ -85,22 +87,26 @@ function startAnimation() {
 
 function stopAnimation() {
   pause = true;
-  document.getElementById('pause').hidden = false;
+  if(!gameLost){
+    document.getElementById('pause').hidden = false;
+  }
   clearInterval(timer);
   timer = null;
   clearInterval(timerBox);
-  timerBox = null;  
-  if(points > highscoreUser)
-    points = highscoreUser;
+  timerBox = null;    
 }					
 
 function init() {
   balls = document.getElementById('ball-container').getElementsByTagName('img');
-  box = document.getElementById('box-container').getElementsByTagName('img');		  
+  box = document.getElementById('box-container').getElementsByTagName('img');
+  if(points > highscoreUser){
+    localStorage.setItem("highscore", highscoreUser);
+  }	  
   highscore = localStorage.getItem("highscore");		
   highscoreUser = 0;  
   counter = 0;
   pause = false;
+  gameLost = false;
 
   if(highscore){
 	   document.getElementById('highscore').innerHTML = "" + highscore;
