@@ -1,7 +1,8 @@
 var db = require('./db');
 var bcrypt = require('bcryptjs');
-var upsert = require('upsert');
+var upsert = require('./upsert');
 
+module.exports = register;
 
 function* register(){
   var username = this.request.body.username;
@@ -23,10 +24,30 @@ function* register(){
 }
 
 function registerUser(username, password) {
+  return hashPassword(password).then(hash => {
+    return db("users").insert({
+      name: username,
+      password: hash
+    });
+  });
+}
 
+function hashPassword(password){
+  return new Promise((resolve, reject) => {
+    bcrypt.genSalt(10, function(err, salt) {
+      if(err){
+        return reject(err);
+      }
 
+      bcrypt.hash(password, salt, function(err, hash) {
+        if(err){
+          return reject(err);
+        }
 
-  return upsert("users", {name: username}, {name: username, password: password});
+        return resolve(hash);
+      });
+    });
+  });
 }
 
 function isUsernameTaken(username) {

@@ -13,8 +13,9 @@ app.use(bodyparser());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+router.post("/register", require("./api/register"));
 router.post("/highscore", require('./api/highscore'));
 
-
-
 app.listen(80);
+
+console.log("Server listening on port 80...");
