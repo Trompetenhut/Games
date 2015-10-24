@@ -5,26 +5,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Gem Game #1</title>
 
-		<script type="text/javascript" src="main.js"></script>
-		<script type="text/javascript" src="ball.js"></script>
-		<script type="text/javascript" src="box.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="shortcut icon" href="Edelstein_green.ico">
 
 	</head>
-	<body> 
+	<body>
 		<div>
 			<button onclick="startAnimation()">Start</button>
-           	<button onclick="stopAnimation()">Stop</button> 
-       </div>			
-       
+           	<button onclick="stopAnimation()">Stop</button>
+       </div>
+
        		<p>[shoot: arrow keys, pause: space]</p>
-			<p >Your Highscore: <label id="highscore"></label></p>			
-	       
+			<p >Your Highscore: <label id="highscore"></label></p>
+
 	       <table>
 	       	<tr>
 	       		<td>
-	       			<div id="rand" onmousedown="myFunction(event)">	       				
+	       			<div id="rand" onmousedown="myFunction(event)">
 
 						<div style="left:270px; top: 230px;  position:absolute;">-------------</div>
 				        <div style="left:20px; top: 305px;  position:absolute;">-------------</div>
@@ -35,12 +32,12 @@
 						<div id="box-container">
 							<img id = "box" src="Edelstein_schwarz.png" alt="" class="hidden" style="left:40px; top:125px;"/>
 						</div>
-						
+
 						<img id = "player" src="Edelstein_green.png" style="left:165px; top: 265px; position:absolute;" alt=""/>
-					</div>	
+					</div>
 	       		</td><!--
 	       		<td style="padding: 0 0 0 200px">
-	       			<table>	       				
+	       			<table>
 	       				<tr>
 	       					<td>
 	       						<label id="achievment1">>= 50 && < 70</label>
@@ -57,7 +54,7 @@
 	       				</tr>
 	       				<tr>
 	       					<td>
-	       						<label id="achievment2">>= 100 && < 120</label>	       						
+	       						<label id="achievment2">>= 100 && < 120</label>
 	       					</td>
 	       					<td>
 	       						<table>
@@ -71,7 +68,7 @@
 	       				</tr>
 	       				<tr>
 	       					<td>
-	       						<label id="achievment3">>= 200</label>	       						
+	       						<label id="achievment3">>= 200</label>
 	       					</td>
 	       					<td>
 	       						<img class = "box" src="Edelstein_blau.png" alt=""/>
@@ -79,7 +76,7 @@
 	       				</tr>
 	       				<tr>
 	       					<td>
-	       						<label id="achievment4">>= 250 && < 270</label>	       						
+	       						<label id="achievment4">>= 250 && < 270</label>
 	       					</td>
 	       					<td>
 	       						<table>
@@ -93,7 +90,7 @@
 	       				</tr>
 	       				<tr>
 	       					<td>
-	       						<label id="achievment5">>= 300 && < 1000</label>	       						
+	       						<label id="achievment5">>= 300 && < 1000</label>
 	       					</td>
 	       					<td>
 	       						<table >
@@ -106,12 +103,18 @@
 	       					</td>
 	       				</tr>
 	       			</table>
-	       			
+
 	       		</td>-->
 	       	</tr>
 
 	       </table>
 	       <h1 id="points" align="center" style="width:340px; margin-top:-300px">0</h1>
 	       <h4 id="pause" align="center" style="width:340px; margin-top:-30px"><font color="grey">pause</font></h4>
+
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+				<script src="main.js"></script>
+		 		<script src="ball.js"></script>
+		 		<script src="box.js"></script>
+
 	</body>
 </html>

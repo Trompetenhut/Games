@@ -35,3 +35,7 @@
 .hidden{
 	visibility: hidden;
 }
+
+#tableHighscore{
+	border: 1px solid black;
+}

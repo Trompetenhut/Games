@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "doublegem",
+      "script": "server.js",
+      "watch": true,
+      "node_args": "--harmony --harmony_arrow_functions"
+    }
+  ]
+}

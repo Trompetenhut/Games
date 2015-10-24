@@ -20,7 +20,7 @@ function initBall(oBall, direction) {
     }else{*/
       oBall._vX = -speed/4;
       oBall._vY = 0;
-    //}  	
+    //}
   }else if(direction == "right"){
   	/*if(points >= 50 && points < 70){
       oBall._vX = speed;
@@ -37,7 +37,7 @@ function initBall(oBall, direction) {
     }else{*/
       oBall._vX = speed;
       oBall._vY = 0;
-    //} 
+    //}
   }/*else if(direction == "up"){
   	oBall._vX = 0;
   	oBall._vY = -speed;
@@ -45,7 +45,7 @@ function initBall(oBall, direction) {
   	oBall._vX = 0;
   	oBall._vY = speed;
   }*/
-  
+
 }
 
 function moveBall(oBall) {
@@ -68,20 +68,18 @@ function moveBall(oBall) {
 	  	if(res[res.length-1] == "Edelstein_schwarz.png" || res[res.length-1] == "Edelstein_orange.png"){
         if(oBall._vX < 0){
           oBall.style.left = oBall._x+'px';
-        }
-        no();          
-        highscoreUser++;
+        }       
 	  		document.getElementById('ball-container').removeChild(oBall);
 	  		document.getElementById('box-container').removeChild(box[k]);
 	  		points++;
 	  		document.getElementById('points').innerHTML = "" + points;
         //newAchievement();
-	  	}if(res[res.length-1] == "Edelstein_blau.png"){	  		
+	  	}if(res[res.length-1] == "Edelstein_blau.png"){
 	  		document.getElementById('ball-container').removeChild(oBall);
         box[k].src = "Edelstein_schwarz.png";
 	  	}else if(res[res.length-1] == "Edelstein_rot.png"){
 	  		gameOver();
-	  	}	  	
+	  	}
 	  }else if(ballX - ballsWidth/2 < boxX + boxWidth*3 && ballX + ballsWidth/2 > boxX - boxWidth*2 && ballY < boxY + boxWidth*2 && ballY + ballsWidth > boxY - boxWidth){
       if(res[res.length-1] == "Edelstein_orange.png"){
 
@@ -91,8 +89,8 @@ function moveBall(oBall) {
           oBall._vX = speed/5;
           oBall.src = "Edelstein_orange.png";
         }
-      }          
-    }  
+      }
+    }
 	}
 	if(ballX > 500 || ballY > 500 || ballX < 0 || ballY < 0){
 		document.getElementById('ball-container').removeChild(oBall);
@@ -121,12 +119,12 @@ function newAchievement(){
       document.getElementById("achievment4").style.color = "black";
       document.getElementById("achievment5").style.color = "black";
       document.getElementById("points").style.color = "black";
-    } 
+    }
 }
 
 function createBall(oParent, direction) {
   oParent.appendChild(document.getElementById('ball').cloneNode(true));
   initBall(balls[balls.length-1], direction);
   balls[balls.length-1].classList.remove("hidden");
-  
+
 }
