@@ -49,10 +49,13 @@ function login() {
     password: document.getElementById('loginPassword').value
   }, function(answer){
     $("#navLogin").dropdown("toggle");
-    console.log("answer: "+answer);
+    console.log(answer);
+    document.getElementById('navLogin').innerHTML = "logout";
   }).fail(function(error){
+    console.log(error);
     var response = JSON.parse(error.responseText);
-    if(response.codeNr == 2){
+    console.log(response);
+    if(response.codeNr == 2 || response.codeNr == 3){
       document.getElementById('errLogin').innerHTML = response.message;
       document.getElementById('errLogin').hidden = false;
     }else{
