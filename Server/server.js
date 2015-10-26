@@ -14,6 +14,7 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 router.post("/register", require("./api/register"));
+router.post("/login", require("./api/login"));
 router.post("/highscore", require('./api/highscore'));
 
 app.listen(80);

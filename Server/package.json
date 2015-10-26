@@ -8,6 +8,7 @@
     "knex": "^0.8.6",
     "koa": "^1.1.1",
     "koa-bodyparser": "^2.0.1",
+    "koa-login": "0.0.5",
     "koa-router": "^5.2.3",
     "koa-static": "^1.5.1",
     "mysql2": "^0.15.8"

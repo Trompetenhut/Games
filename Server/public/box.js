@@ -2,12 +2,12 @@
 
 	if(direction == "up"){
 		oBox._x = 40;
-		oBox._y = 125;
+		oBox._y = 175;
 		oBox._vX = 0;
 		oBox._vY = speedBox;
 	}else if(direction == "down"){
 		oBox._x = 290;
-		oBox._y = 400;
+		oBox._y = 450;
 		oBox._vX = 0;
 		oBox._vY = -speedBox;
 	}

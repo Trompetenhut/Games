@@ -2,6 +2,7 @@
     width: 340px;
     height: 320px;
     border: 1px solid black;
+    margin-left: 10px;
 }
 
 #player, #player2 {
@@ -38,4 +39,15 @@
 
 #tableHighscore{
 	border: 1px solid black;
+}
+
+table, th, td {
+    border: 1px solid black;
+    width: 300px;
+}
+
+.modal-footer {   border-top: 0px; }
+
+#highscoreTable{
+  margin-top: -360px;
 }
