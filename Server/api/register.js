@@ -24,7 +24,19 @@ function* register(){
   if(userNameTaken){
     err = {
       codeNr:2,
-      message: "Username already Taken"
+      message: "Username already taken"
+    };
+    this.response.body = err;
+    this.response.status = 400;
+    return err;
+  }
+
+  var emailTaken = yield isEmailTaken(email);
+
+  if(userNameTaken){
+    err = {
+      codeNr:3,
+      message: "Email already taken"
     };
     this.response.body = err;
     this.response.status = 400;
@@ -65,6 +77,12 @@ function hashPassword(password){
 
 function isUsernameTaken(username) {
   return db("users").select().where("name", username).then(rows => {
+    return (rows && rows.length > 0);
+  });
+}
+
+function isEmailTaken(email) {
+  return db("users").select().where("mail", email).then(rows => {
     return (rows && rows.length > 0);
   });
 }

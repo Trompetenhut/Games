@@ -9,9 +9,6 @@ function* login(username, password) {
   var password = this.request.body.password;
   var err;
 
-  console.log("username: " + username);
-  console.log("password: " + password);
-
   if(!validate(username, password)){
     err = {
       codeNr:1,
@@ -44,15 +41,21 @@ function* login(username, password) {
     return err;
   }
 
+  console.log("Erfolgreich eingeloggt");
+
   /*
     Erfolgreich eingeloggt, Login Token mit 'jsonwebtoken' erstellen
     Das erste Argument von jwt.sign() wird mit einem geheimen String verschlüsselt
     Um später herauszufinden welcher Benutzer sich hinter dem Login Token verbirgt
     wird die id des Benutzers im Token verschlüsselt
   */
+
   var token = jwt.sign({ id: user.id }, process.env.SECRET);
 
-  return this.response.body = { token };
+  return this.response.body = {
+    token: token,
+    username: username
+  };
 }
 
 function getUserByName(username){

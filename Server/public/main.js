@@ -25,23 +25,15 @@ var speedBox = 1;
 function gameOver(){
   gameLost = true;
 	stopAnimation();
-	//alert("Game Over! \npoints: " + points);
-
 
   $('#modalGameOver').modal('show');
-  if(points > highscore){
+  if(document.getElementById('highscore').hidden === false && points > localStorage.getItem("highscore")){
     document.getElementById("modalMessage").innerHTML = "<b>New Highscore!</b><br>Points: " + points;
     $("#gotoLogin").removeClass('hide');
     $('#modalGameOver').on('shown.bs.modal', function () {
-      //document.getElementById("gotoLogin").focus();
       document.getElementById("closeGameOver").focus();
-
-      /*
-      $.post("/api/highscore", {
-        username: highscoreUser,
-        points: points
-      });*/
-  	})
+  	});
+    setHighscore();
   }else{
     document.getElementById("modalMessage").innerHTML = "Points: " + points;
     $("#gotoLogin").addClass('hide');
@@ -61,7 +53,7 @@ function gameOver(){
 }
 
 function newGame(){
-  init();
+  resetGame();
 	startAnimation();
 }
 
@@ -118,27 +110,27 @@ function stopAnimation() {
   timer = null;
   clearInterval(timerBox);
   timerBox = null;
+
+}
+
+function resetGame() {
+  counter = 0;
+  gameLost = false;
+  points = 0;
+
+  document.getElementById('points').innerHTML = "" + points;
+
+  initBall(balls[0], "");
 }
 
 function init() {
   balls = document.getElementById('ball-container').getElementsByTagName('img');
   box = document.getElementById('box-container').getElementsByTagName('img');
-  highscore = localStorage.getItem("highscore");
-  counter = 0;
-  pause = false;
-  gameLost = false;
 
-  if(highscore){
-	   document.getElementById('highscore').innerHTML = "" + highscore;
-  }else{
-  	document.getElementById('highscore').innerHTML = "0";
-  }
-  points = 0;
-  document.getElementById('points').innerHTML = "" + points;
-
-  initBall(balls[0], "");
+  pause = true;
   getWindowCoords();
-  //startAnimation();
+  getHighscoreList();
+  resetGame();
 }
 
 function checkKeyPressed(e) {
@@ -171,6 +163,10 @@ function myFunction(e) {
       createBall(document.getElementById('ball-container'), "left");
     }
 }
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 
 window.addEventListener('focus', function() {
 

@@ -18,10 +18,12 @@ app.use(logger());
 
 router.post("/register", require("./api/register"));
 router.post('/login', require('./api/login'));
+router.post("/highscoreList", require('./api/highscoreList'));
 //router.use(auth({ secret: process.env.SECRET })); // Um Routen danach aufzurufen muss der Benutzer eingeloggt sein
-router.post("/highscore", require('./api/highscore'));
+router.post("/setHighscore", require('./api/highscore').setHighscore);
+router.post("/getHighscore", require('./api/highscore').getHighscore);
 
 //app.listen(process.env.PORT);
-app.listen(80);
+app.listen(process.env.PORT);
 
 console.log('Server listening on port', process.env.PORT);
