@@ -7,6 +7,7 @@ var highscoreUser;
 var counter;
 var pause;
 var gameLost;
+var dynatable;
 
 var balls = [];
 var balls2 = [];
@@ -27,7 +28,7 @@ function gameOver(){
 	stopAnimation();
 
   $('#modalGameOver').modal('show');
-  if(document.getElementById('highscore').hidden === false && points > localStorage.getItem("highscore")){
+  if(localStorage.getItem('token') && points > localStorage.getItem("highscore")){
     document.getElementById("modalMessage").innerHTML = "<b>New Highscore!</b><br>Points: " + points;
     $("#gotoLogin").removeClass('hide');
     $('#modalGameOver').on('shown.bs.modal', function () {
@@ -91,6 +92,7 @@ function animateStuff() {
 }
 
 function startAnimation() {
+  $('#startAnimationBtn').blur();
   if(!gameLost){
     pause = false;
     document.getElementById('pause').innerHTML = "";
@@ -102,6 +104,7 @@ function startAnimation() {
 }
 
 function stopAnimation() {
+  $('#stopAnimationBtn').blur();
   pause = true;
   if(!gameLost){
     document.getElementById('pause').innerHTML = "pause";
@@ -130,7 +133,8 @@ function init() {
 
   pause = true;
   getWindowCoords();
-  getHighscoreList();
+  updateHighscoreList(false);
+  setInterval( function() { updateHighscoreList(true) }, 5000 );
   resetGame();
 }
 
@@ -165,63 +169,12 @@ function myFunction(e) {
     }
 }
 
-var dynatable;
+
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
-
-/*
-    var json =
-    [
-  {
-    "rank": 1,
-    "name": "Jochen",
-    "points": 100,
-    "date":"25.10.2015"
-  },
-  {
-    "rank": 2,
-    "name": "Jochen",
-    "points": 100,
-    "date":"25.10.2015"
-  }
-];
-var json2 =
-[
-{
-"rank": 3,
-"name": "Jochen",
-"points": 100,
-"date":"25.10.2015"
-},
-{
-"rank": 4,
-"name": "Jochen",
-"points": 30,
-"date":"25.10.2015"
-}
-];
-
-
-
-    dynatable = $('#highscoreTable').dynatable({
-      dataset: {
-        records: json
-      }
-    }).data('dynatable');
-
-    $('#stopAnimationButton').click(
-        function() {
-            setToItems(json2);
-        });*/
-
 });
 
-function setToItems (argument) {
-  console.log(argument);
-  dynatable.settings.dataset.originalRecords = argument;
-  dynatable.process();
-}
 
 window.addEventListener('focus', function() {
 

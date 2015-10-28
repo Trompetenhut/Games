@@ -33,7 +33,7 @@ function* register(){
 
   var emailTaken = yield isEmailTaken(email);
 
-  if(userNameTaken){
+  if(emailTaken){
     err = {
       codeNr:3,
       message: "Email already taken"

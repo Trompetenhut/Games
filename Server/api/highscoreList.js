@@ -17,9 +17,9 @@ function* getHighscoreList () {
   }
 
   for (var i = 0; i < rows.length; i++) {
-      rows[i].created = rows[i].created.getTime();
+      rows[i].created = rows[i].created.getTime() - 1000;
   }
-  
+
   this.response.body = rows;
   return this.response.status = 200;
 }

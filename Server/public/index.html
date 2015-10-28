@@ -20,7 +20,7 @@
     <div>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown" id="menuReg">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navReg"><span class="glyphicon glyphicon-user"></span> <span id="navRegText">Sign Up</span></a>
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navReg"><span class="glyphicon glyphicon-user"></span> <span id="navRegText">Register</span></a>
             <div class="dropdown-menu" style="padding:30px; width:300px">
 							<form class="form col-md-12 center-block" id="formReg" action="" method="post">
 								<div class="form-group">
@@ -43,7 +43,7 @@
 									<font color="red"><label id="errRegEmail" hidden></label></font>
 								</div>
 								<div class="form-group">
-									<button class="btn btn-danger btn-lg btn-block" onclick="register()">Sign Up</button>
+									<button class="btn btn-danger btn-lg btn-block" onclick="register()">Register</button>
 								</div>
 							</form>
             </div>
@@ -63,7 +63,7 @@
 									<input id="loginPassword" type="password" class="form-control input-lg" placeholder="Password" required>
 								</div>
 								<div class="form-group">
-									<button class="btn btn-primary btn-lg btn-block" onclick="login()">Sign In</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="checkLogin()">Login</button>
 									<span class="pull-right"><a href="#" id="registerLink">Register</a></span><span><a href="#">Forgot password</a></span>
 								</div>
 							</form>
@@ -74,11 +74,11 @@
   </div>
 </nav>
 		<div>
-			<button class="btn btn-default" onclick="startAnimation()">Start</button>
-     	<button id="stopAnimationButton" class="btn btn-default" onclick="stopAnimation()">Stop</button>
+			<button id="startAnimationBtn" class="btn btn-default" onclick="startAnimation()">Start</button>
+     	<button id="stopAnimationBtn" class="btn btn-default" onclick="stopAnimation()">Stop</button>
     </div>
     <p>[shoot: arrow keys, pause: space]</p>
-		<p><label id="yourHighscoreText"><a href="#" class="gotoLogin">Login</a> to save your highscore!</label> <label id="highscore" hidden></label></p>
+		<p><label id="yourHighscoreText"><a href="#" class="gotoLogin">Login</a> or <a href="#" class="gotoRegister">Register</a> to save your highscore!</label> <label id="highscore" hidden></label></p>
 
 		<div id="rand" onmousedown="myFunction(event)">
 			<div style="left:270px; top: 280px;  position:absolute;">-------------</div>
