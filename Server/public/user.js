@@ -107,10 +107,41 @@ function setHighscore() {
   }, function(response){
     highscore = points
     document.getElementById('highscore').innerHTML = highscore;
-    getHighscoreList();
+    updateHighscoreList();
     console.log(response);
   }).fail(function(error){
       console.log(error);
+  });
+}
+
+function updateHighscoreList() {
+  var table = document.getElementById("highscoreTable");
+
+  for(var i = table.rows.length - 1; i > 0; i--){
+    table.deleteRow(i);
+  }
+
+  $.post("/api/highscoreList", {}, function(response){
+
+    var rows = [];
+
+    for (var i = 0; i < response.length; i++) {
+      var item = response[i];
+
+     rows.push({
+          "rank"    : i+1,
+          "name"    : item.user_id,
+          "points"  : item.points,
+          "date"    : moment.utc(item.created).fromNow()
+      });
+    }
+
+    dynatable.settings.dataset.originalRecords = rows;
+    dynatable.process();
+
+  }).fail(function(error){
+    console.log("fehler");
+    console.log(error);
   });
 }
 
@@ -122,22 +153,25 @@ function getHighscoreList() {
   }
 
   $.post("/api/highscoreList", {}, function(response){
+
+    var rows = [];
+
     for (var i = 0; i < response.length; i++) {
-      var row = table.insertRow(i + 1);
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      var cell3 = row.insertCell(2);
-      var cell4 = row.insertCell(3);
-      cell1.innerHTML = (i + 1);
-      cell2.innerHTML = response[i].user_id;
-      cell3.innerHTML = response[i].points;
-      var id = "tooltipDate"+i;
-      cell4.innerHTML = '<span id="'+id+'" data-toggle="tooltip">' + (moment(response[i].created.substring(0, 10)).fromNow()) + '</span>';
-      $('#'+id).tooltip({title : response[i].created.substring(0, 10)});
+      var item = response[i];
+
+     rows.push({
+          "rank"    : (i+1).toString(),
+          "name"    : item.user_id,
+          "points"  : (item.points).toString(),
+          "date"    : moment(item.created).fromNow()
+      });
     }
 
-    console.log("3:" + table.rows.length);
-
+    dynatable = $('#highscoreTable').dynatable({
+      dataset: {
+        records: rows
+      }
+    }).data('dynatable');
 
   }).fail(function(error){
     console.log("fehler");

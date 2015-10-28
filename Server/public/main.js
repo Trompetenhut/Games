@@ -126,6 +126,7 @@ function resetGame() {
 function init() {
   balls = document.getElementById('ball-container').getElementsByTagName('img');
   box = document.getElementById('box-container').getElementsByTagName('img');
+  moment.tz.setDefault("Europe/Berlin");
 
   pause = true;
   getWindowCoords();
@@ -164,9 +165,63 @@ function myFunction(e) {
     }
 }
 
+var dynatable;
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
+
+/*
+    var json =
+    [
+  {
+    "rank": 1,
+    "name": "Jochen",
+    "points": 100,
+    "date":"25.10.2015"
+  },
+  {
+    "rank": 2,
+    "name": "Jochen",
+    "points": 100,
+    "date":"25.10.2015"
+  }
+];
+var json2 =
+[
+{
+"rank": 3,
+"name": "Jochen",
+"points": 100,
+"date":"25.10.2015"
+},
+{
+"rank": 4,
+"name": "Jochen",
+"points": 30,
+"date":"25.10.2015"
+}
+];
+
+
+
+    dynatable = $('#highscoreTable').dynatable({
+      dataset: {
+        records: json
+      }
+    }).data('dynatable');
+
+    $('#stopAnimationButton').click(
+        function() {
+            setToItems(json2);
+        });*/
+
 });
+
+function setToItems (argument) {
+  console.log(argument);
+  dynatable.settings.dataset.originalRecords = argument;
+  dynatable.process();
+}
 
 window.addEventListener('focus', function() {
 

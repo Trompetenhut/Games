@@ -6,6 +6,7 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="jquery.dynatable.css">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="shortcut icon" href="Edelstein_green.ico">
 
@@ -73,8 +74,8 @@
   </div>
 </nav>
 		<div>
-			<button id="test" class="btn btn-default" onclick="startAnimation()">Start</button>
-     	<button class="btn btn-default" onclick="stopAnimation()">Stop</button>
+			<button class="btn btn-default" onclick="startAnimation()">Start</button>
+     	<button id="stopAnimationButton" class="btn btn-default" onclick="stopAnimation()">Stop</button>
     </div>
     <p>[shoot: arrow keys, pause: space]</p>
 		<p><label id="yourHighscoreText"><a href="#" class="gotoLogin">Login</a> to save your highscore!</label> <label id="highscore" hidden></label></p>
@@ -122,29 +123,32 @@
 
 				</div>
 				<div class="col-sm-4">
+					<div id="highscoreTableDiv">
 					<table id="highscoreTable" class="table table-condensed">
 						<caption>World highscore list</caption>
 						<thead>
-							<tr>
 								<th>rank</th>
 								<th>name</th>
 								<th>points</th>
 								<th>date</th>
-							</tr>
 						</thead>
-						<tbody id="tbodyid">
+						<tbody>
 						</tbody>
 					</table>
+				</div>
 				</div>
 			</div>
 		</div>
 
 			 	<!-- ------ JS -------  -->
+
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.1/moment-timezone-with-data.min.js"></script>
+				<script src="jquery.dynatable.js"></script>
 				<script src="main.js"></script>
 				<script src="user.js"></script>
 		 		<script src="ball.js"></script>

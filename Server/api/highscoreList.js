@@ -16,7 +16,10 @@ function* getHighscoreList () {
     return err;
   }
 
-
+  for (var i = 0; i < rows.length; i++) {
+      rows[i].created = rows[i].created.getTime();
+  }
+  
   this.response.body = rows;
   return this.response.status = 200;
 }
