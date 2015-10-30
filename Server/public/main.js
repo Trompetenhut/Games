@@ -28,7 +28,7 @@ function gameOver(){
 	stopAnimation();
 
   $('#modalGameOver').modal('show');
-  if(localStorage.getItem('token') && points > localStorage.getItem("highscore")){
+  if(sessionStorage.getItem('token') && points > sessionStorage.getItem("highscore")){
     document.getElementById("modalMessage").innerHTML = "<b>New Highscore!</b><br>Points: " + points;
     $("#gotoLogin").removeClass('hide');
     $('#modalGameOver').on('shown.bs.modal', function () {
@@ -135,6 +135,12 @@ function init() {
   getWindowCoords();
   updateHighscoreList(false);
   setInterval( function() { updateHighscoreList(true) }, 5000 );
+
+  if(sessionStorage.getItem('token')){
+    logedIn();
+  }else{
+    logout();
+  }
   resetGame();
 }
 
@@ -173,6 +179,9 @@ function myFunction(e) {
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
+    $('#modalGameOver').on('hide.bs.modal', function () {
+      newGame();
+  	});
 });
 
 

@@ -17,9 +17,16 @@ $(".gotoRegister").on('click', function(){
     setTimeout('$("#regUsername").focus()', 200);
 });
 
+$("#gotoForgot").on('click', function(){
+  $("#navLogin").dropdown("toggle");
+    $('#modalForgot').modal('show');
+    setTimeout('$("#txtResetPassword").focus()', 200);
+});
+
 $("#navLogin").on('click', function(){
   $('#navLogin').blur();
-  if(localStorage.getItem('token')){
+  if(sessionStorage.getItem('token')){
+    $("#navLogin").dropdown("toggle");
     logout();
   }else{
     setTimeout('$("#loginUsername").focus()', 100);
@@ -28,7 +35,7 @@ $("#navLogin").on('click', function(){
 });
 
 $("#navReg").on('click', function(){
-  if(localStorage.getItem('token')){
+  if(sessionStorage.getItem('token')){
     $("#navReg").dropdown("toggle");
     document.getElementById('startAnimationBtn').focus();
     document.getElementById('startAnimationBtn').blur();
@@ -39,9 +46,8 @@ $("#navReg").on('click', function(){
 });
 
 function logout() {
-  localStorage.removeItem("token");
+  sessionStorage.removeItem("token");
   document.getElementById('navLoginText').innerHTML = "Login";
-  $("#navLogin").dropdown("toggle");
   document.getElementById('highscore').hidden = true;
   document.getElementById('yourHighscoreText').innerHTML = '<a href="#" class="gotoLogin">Login</a> or <a href="#" class="gotoRegister">Register</a> to save your highscore!';
   document.getElementById('navRegText').innerHTML = "Register";
@@ -96,6 +102,7 @@ function register() {
 $(document).ready(function(){
  $(document).on('submit', '#formLogin', function(){return false;});
  $(document).on('submit', '#formReg', function(){return false;});
+ $(document).on('submit', '#formForgot', function(){return false;});
 });
 
 function checkLogin() {
@@ -104,27 +111,58 @@ function checkLogin() {
   }
 }
 
+function sendEmail() {
+  document.getElementById('errResetPassword').hidden = true;
+
+  $.post("/api/forgot", {
+    email: document.getElementById('txtResetPassword').value
+  }, function(response){
+    document.getElementById('txtAlertsentEmail').innerHTML = "An e-mail has been sent to " + document.getElementById('txtResetPassword').value + " with further instructions.";
+    document.getElementById('AlertsentEmail').hidden = false;
+    document.getElementById('txtResetPassword').value = "";
+
+  }).fail(function(error){
+    var response = JSON.parse(error.responseText);
+
+    if(response.codeNr == 2){
+      document.getElementById('errResetPassword').innerHTML = response.message;
+      document.getElementById('errResetPassword').hidden = false;
+    }else{
+      document.getElementById('errResetPassword').innerHTML = "Error sending Email. Please try again later";
+      document.getElementById('errResetPassword').hidden = false;
+      console.log(error);
+    }
+  });
+
+
+}
+
+function logedIn() {
+  document.getElementById('navLoginText').innerHTML = "logout";
+  document.getElementById('navRegText').innerHTML = sessionStorage.getItem('username');
+
+  document.getElementById('highscore').hidden = false;
+  document.getElementById('yourHighscoreText').innerHTML = "Your highscore: ";
+  updateHighscore();
+}
+
 function login(username, password) {
+  document.getElementById('errLogin').hidden = true;
+
   $.post("/api/login", {
     username: username,
     password: password
   }, function(response){
     document.getElementById('loginUsername').value = "";
     document.getElementById('loginPassword').value = "";
-    document.getElementById('navLoginText').innerHTML = "logout";
-    document.getElementById('navRegText').innerHTML = response.username;
-    localStorage.setItem("token", response.token);
-    localStorage.setItem("username", response.username);
-
-    document.getElementById('highscore').hidden = false;
-    document.getElementById('yourHighscoreText').innerHTML = "Your highscore: ";
+    sessionStorage.setItem("token", response.token);
+    sessionStorage.setItem("username", response.username);
     $("#navReg").click();
-    updateHighscore();
+    logedIn();
 
   }).fail(function(error){
-    console.log(error);
     var response = JSON.parse(error.responseText);
-    console.log(response);
+
     if(response.codeNr == 2 || response.codeNr == 3){
       document.getElementById('errLogin').innerHTML = response.message;
       document.getElementById('errLogin').hidden = false;
@@ -141,14 +179,14 @@ function updateHighscore() {
     type:"POST",
 	  url: '/api/getHighscore',
 	  headers: {
-		'X-Auth-Token': localStorage.getItem('token')
+		'X-Auth-Token': sessionStorage.getItem('token')
   	},
   	data: {
-  		username: localStorage.getItem('username')
+  		username: sessionStorage.getItem('username')
   	},
   	success: function(response){
       document.getElementById('highscore').innerHTML = response[0].points
-      localStorage.setItem("highscore", response[0].points);
+      sessionStorage.setItem("highscore", response[0].points);
   	},
     error: function(error){
       console.log(error);
@@ -161,10 +199,10 @@ function setHighscore() {
     type:"POST",
 	  url: '/api/setHighscore',
 	  headers: {
-		'X-Auth-Token': localStorage.getItem('token')
+		'X-Auth-Token': sessionStorage.getItem('token')
   	},
   	data: {
-  		username: localStorage.getItem('username'),
+  		username: sessionStorage.getItem('username'),
       points: points
   	},
   	success: function(response){

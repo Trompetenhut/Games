@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Reset Password</title>
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="shortcut icon" href="Edelstein_green.ico">
+
+  </head>
+  <body>
+		<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://gemgames.me">gemgames</a>
+    </div>
+  </div>
+</nav>
+<div class="alert alert-success" id="AlertsentEmail" hidden>
+	<label>Success! Your password has been changed.</label>
+</div>
+
+		<div id="idForm">
+		<form class="form col-md-4 center-block" id="formNewPassword" action="" method="post">
+			<h1>Reset Password</h1>
+			<div class="form-group">
+				<label>Password</label>
+				<input id="newPassword1" type="password" class="form-control input-lg" placeholder="Password" required autofocus>
+			</div>
+			<div class="form-group">
+				<label>Confirm Password</label>
+				<input id="newPassword2" type="password" class="form-control input-lg" placeholder="Confirm Password" required>
+				<font color="red"><label id="errnewPassword" hidden></label></font>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary btn-lg btn-block" onclick="newPassword()">Update Password</button>
+			</div>
+		</form>
+	</div>
+		<a id="backToHomepage" href="http://gemgames.me" align="center" hidden>Back to Homepage</a>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="/reset.js"></script>
+
+		<script>
+		$(document).ready(function(){
+		 $(document).on('submit', '#formNewPassword', function(){return false;});
+		});
+		</script>
+  </body>
+</html>

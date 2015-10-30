@@ -1,9 +1,7 @@
 require('dotenv').load();
 
 var koa = require('koa');
-var routerPublic = require('koa-router')({
-  prefix: '/api'
-});
+var routerPublic = require('koa-router')();
 var routerSecret = require('koa-router')({
   prefix: '/api'
 });
@@ -21,9 +19,12 @@ app.use(routerSecret.routes());
 app.use(routerSecret.allowedMethods());
 app.use(logger());
 
-routerPublic.post("/register", require("./api/register"));
-routerPublic.post('/login', require('./api/login'));
-routerPublic.post("/highscoreList", require('./api/highscoreList'));
+routerPublic.post("/api/register", require("./api/register"));
+routerPublic.post('/api/login', require('./api/login'));
+routerPublic.post("/api/highscoreList", require('./api/highscoreList'));
+routerPublic.post("/api/forgot", require('./api/forgot').forgot);
+routerPublic.get("/reset/:token", require('./api/forgot').checkToken);
+routerPublic.post("/reset/:token", require('./api/forgot').resetPassword);
 
 routerSecret.use(auth({ secret: process.env.SECRET })); // Um Routen danach aufzurufen muss der Benutzer eingeloggt sein
 routerSecret.post("/setHighscore", require('./api/highscore').setHighscore);
