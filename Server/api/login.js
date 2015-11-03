@@ -77,7 +77,6 @@ function checkPassword(username, password) {
       var user = rows[0];
 
       return comparePassword(password, user.password);
-      return true;
   });
 }
 

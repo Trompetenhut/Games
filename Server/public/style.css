@@ -56,3 +56,7 @@ table, th, td {
 th {
     background: #337AB7;
 }
+
+body{
+  background: rgba(200, 54, 54, 0.5);
+}

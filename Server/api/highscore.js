@@ -7,36 +7,28 @@ module.exports =
     getHighscore:getHighscore
   };
 
-function* setHighscore () {
-  var username = this.request.body.username;
-  var points = parseInt(this.request.body.points, 10);
+function setHighscore (data) {
+  /*var username = this.request.body.username;
+  var points = parseInt(this.request.body.points, 10);*/
   var err;
+
+  var username = data.username;
+  var points = data.points;
 
   console.log("setHighscore");
   console.log("username: " +username);
   console.log("points: " +points);
 
   if(!validate(username, points)){
-    err = {
-      codeNr:1,
-      message: "wrong validate"
-    };
-    this.response.body = err;
-    this.response.status = 400;
-    return err;
+    console.log("wrong username");
+    return null;
   }
 
-  if(!(yield saveHighscore(username, points))){
-    err = {
-      codeNr:2,
-      message: "cant write in db"
-    };
-    this.response.body = err;
-    this.response.status = 400;
-    return err;
-  }
+  saveHighscore(username, points).then(() => {
+    console.log("es wurde geschrieben");
+    return true;
+  }).catch(err => console.error(err));
 
-  return this.response.status = 200;
 }
 
 function* getHighscore() {

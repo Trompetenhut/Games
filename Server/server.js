@@ -8,7 +8,7 @@ var routerSecret = require('koa-router')({
 var fileServer = require('koa-static');
 var bodyparser = require('koa-bodyparser');
 var auth = require('koa-auth-jwt');
-var logger = require('koa-logger')
+var logger = require('koa-logger');
 var app = koa();
 
 app.use(fileServer("public"));
@@ -19,6 +19,11 @@ app.use(routerSecret.routes());
 app.use(routerSecret.allowedMethods());
 app.use(logger());
 
+var server = require('http').Server(app.callback());
+var io = require('socket.io')(server);
+var game = require('./api/game').init(io);
+
+//Router
 routerPublic.post("/api/register", require("./api/register"));
 routerPublic.post('/api/login', require('./api/login'));
 routerPublic.post("/api/highscoreList", require('./api/highscoreList'));
@@ -27,9 +32,10 @@ routerPublic.get("/reset/:token", require('./api/forgot').checkToken);
 routerPublic.post("/reset/:token", require('./api/forgot').resetPassword);
 
 routerSecret.use(auth({ secret: process.env.SECRET })); // Um Routen danach aufzurufen muss der Benutzer eingeloggt sein
-routerSecret.post("/setHighscore", require('./api/highscore').setHighscore);
+//routerSecret.post("/setHighscore", require('./api/highscore').setHighscore);
 routerSecret.post("/getHighscore", require('./api/highscore').getHighscore);
+routerSecret.post("/setHighscore", require('./api/game').saveHighscore);
 
-app.listen(process.env.PORT);
+server.listen(process.env.PORT);
 
 console.log('Server listening on port', process.env.PORT);

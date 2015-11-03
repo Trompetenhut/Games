@@ -185,7 +185,7 @@ function updateHighscore() {
   		username: sessionStorage.getItem('username')
   	},
   	success: function(response){
-      document.getElementById('highscore').innerHTML = response[0].points
+      document.getElementById('highscore').innerHTML = response[0].points;
       sessionStorage.setItem("highscore", response[0].points);
   	},
     error: function(error){
@@ -195,6 +195,26 @@ function updateHighscore() {
 }
 
 function setHighscore() {
+  console.log("send username vom client");
+  $.ajax({
+    type:"POST",
+	  url: '/api/setHighscore',
+	  headers: {
+		'X-Auth-Token': sessionStorage.getItem('token')
+  	},
+  	data: {
+  		username: sessionStorage.getItem('username')
+  	},
+  	success: function(response){
+      console.log("highscore: " + highscore);
+      document.getElementById('highscore').innerHTML = highscore;
+      updateHighscoreList(true);
+  	},
+    error: function(error){
+      console.log(error);
+  	},
+  });
+  /*
   $.ajax({
     type:"POST",
 	  url: '/api/setHighscore',
@@ -213,7 +233,7 @@ function setHighscore() {
     error: function(error){
       console.log(error);
   	},
-  });
+  });*/
 }
 
 function updateHighscoreList(update) {
