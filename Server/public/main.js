@@ -38,7 +38,7 @@ var timerBox = null;
 var timerBox2 = null;
 var speedBox = 1;
 var gemColor = [];
-var gemColorIndex = 0;
+var gemColorIndex = 1;
 var shootOnTime = [];
 
 function gameOver(){
@@ -59,7 +59,7 @@ function gameOver(){
 
 function newGame(){
   resetGame();
-	startAnimation();
+	//startAnimation();
 }
 
 function animateStuff() {
@@ -161,7 +161,7 @@ function resetGame() {
 
   socket.emit("restart");
 
-  document.getElementById('points').innerHTML = "" + points;
+  document.getElementById('points').innerHTML = points;
 }
 
 function init() {
@@ -184,7 +184,7 @@ function init() {
   }else{
     logout();
   }
-  resetGame();
+  socket.emit("init");
 
   var loaders = [];
   loaders.push(loadSprite('Edelstein_schwarz.png'));
@@ -209,7 +209,8 @@ function loadSprite(src) {
 
 function readyToStart() {
   if(loadImages && loadGemArray){
-    startAnimation();
+    pause = true;
+    document.getElementById('pause').innerHTML = "pause";
   }
 }
 
@@ -219,6 +220,11 @@ function getSockets() {
     gemColor = JSON.parse(JSON.stringify(newColors));
     loadGemArray = true;
     readyToStart();
+  });
+  socket.on('gemColorRestart', function (newColors) {
+    gemColor = JSON.parse(JSON.stringify(newColors));
+    loadGemArray = true;
+    startAnimation();
   });
   socket.on('gemColor', function (newColors) {
     gemColor = JSON.parse(JSON.stringify(newColors));

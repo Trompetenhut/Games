@@ -27,6 +27,7 @@ $("#navLogin").on('click', function(){
   $('#navLogin').blur();
   if(sessionStorage.getItem('token')){
     $("#navLogin").dropdown("toggle");
+    document.getElementById('yourHighscoreText').innerHTML = '<a href="#" class="gotoLogin">Login</a> or <a href="#" class="gotoRegister">Register</a> to save your highscore!';
     logout();
   }else{
     setTimeout('$("#loginUsername").focus()', 100);
@@ -49,7 +50,6 @@ function logout() {
   sessionStorage.removeItem("token");
   document.getElementById('navLoginText').innerHTML = "Login";
   document.getElementById('highscore').hidden = true;
-  document.getElementById('yourHighscoreText').innerHTML = '<a href="#" class="gotoLogin">Login</a> or <a href="#" class="gotoRegister">Register</a> to save your highscore!';
   document.getElementById('navRegText').innerHTML = "Register";
 }
 

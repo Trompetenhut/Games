@@ -55,11 +55,20 @@ function init(io) {
 
   io.on('connection', function(socket){
     client = socket;
-    socket.on('restart', function () {
+    socket.on('init', function () {
       userID = null;
       gemColor = [];
       generateColor(30);
       socket.emit("gemColorStart", gemColor);
+      clearInterval(timer);
+      timer = setInterval(sendNewColors,5000);
+    });
+    socket.on('restart', function () {
+      userID = null;
+      gemColor = [];
+      generateColor(30);
+      socket.emit("gemColorRestart", gemColor);
+      clearInterval(timer);
       timer = setInterval(sendNewColors,5000);
     });
     socket.on('user', function (user) {
